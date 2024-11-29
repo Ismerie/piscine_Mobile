@@ -1,5 +1,5 @@
 {
-  "name": "ex00",
+  "name": "ex01",
   "license": "0BSD",
   "version": "1.0.0",
   "main": "index.js",
@@ -13,8 +13,8 @@
     "expo": "~52.0.11",
     "expo-status-bar": "~2.0.0",
     "react": "18.3.1",
-    "react-dom": "18.3.1",
     "react-native": "0.76.3",
+    "react-dom": "18.3.1",
     "react-native-web": "~0.19.13",
     "@expo/metro-runtime": "~4.0.0"
   },

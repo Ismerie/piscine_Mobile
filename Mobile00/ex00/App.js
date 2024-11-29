@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+
+
   function handlePress() {
     console.log("Button pressed")
   }
@@ -9,13 +11,13 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        A simple Text
+        A simple text
       </Text>
       <Button 
         title="Click me"
         color = "#c8b6ff"
         onPress={handlePress}
-        accessibilityLabel="Learn more about this purple button"
+        accessibilityLabel="Learn more about this button"
       />
       <StatusBar style="auto" />
     </View>
