@@ -1,69 +1,70 @@
-import { View, Text, Platform } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Text, Platform, StyleSheet } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { PlatformPressable } from '@react-navigation/elements';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-// Tes écrans
 import CurrentlyScreen from './CurrentlyScreen';
 import TodayScreen from './TodayScreen';
 import WeeklyScreen from './WeeklyScreen';
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 
-function MyTabBar({ state, descriptors, navigation }) {
-    const { colors } = useTheme();
+const getTabBarIcon = (routeName, focused, color, size) => {
+    let iconName;
 
-    return (
-    <View style={{ flexDirection: 'row' }}>
-    {state.routes.map((route, index) => {
-
-        const isFocused = state.index === index;
-
-        const onPress = () => {
-        const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-            canPreventDefault: true,
-        });
-
-        if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name, route.params);
-        }
-        };
-
-        const onLongPress = () => {
-        navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-        });
-        };
-
-        return (
-        <PlatformPressable
-            key={route.key}
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarButtonTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={{ flex: 1 }}
-        >
-            <Text style={{ color: isFocused ? colors.primary : colors.text }}>
-            {label}
-            </Text>
-        </PlatformPressable>
-        );
-    })}
-    </View>
-    );
+    switch (routeName) {
+        case 'Currently':
+            iconName = focused ? 'time' : 'time-outline';
+            break;
+        case 'Today':
+            iconName = focused ? 'sunny' : 'sunny-outline';
+            break;
+        case 'Weekly':
+            iconName = focused ? 'calendar' : 'calendar-outline';
+            break;
+        default:
+            iconName = 'help-circle';
+    }
+    return <Icon name={iconName} size={size} color={color} />;
 }
 
-export default function BottomBar() {
+export default function BottomBar({ screenText }) {
     return (
-    <Tab.Navigator>
-        <Tab.Screen name="Currently" component={CurrentlyScreen} />
-        <Tab.Screen name="Today" component={TodayScreen} />
-        <Tab.Screen name="Weekly" component={WeeklyScreen} />
+    <Tab.Navigator tabBarPosition='bottom'
+    screenOptions={({ route }) => ({ 
+        headerShown: false,
+        tabBarStyle: styles.tabBar,
+        tabBarIcon: ({ focused, color, size }) => getTabBarIcon(route.name, focused, color, size),
+        tabBarActiveTintColor: '#f5cb5c',
+        tabBarInactiveTintColor: '#333533',
+    })}>
+        <Tab.Screen 
+            name="Currently"
+            children={() => (
+                <CurrentlyScreen screenText={screenText} />
+            )}
+        />
+        <Tab.Screen 
+            name="Today"
+            children={() => (
+                <TodayScreen screenText={screenText} />
+            )}
+        />
+        <Tab.Screen 
+            name="Weekly"
+            children={() => (
+                <WeeklyScreen screenText={screenText} />
+            )}
+        />
     </Tab.Navigator>
     );
 }
+
+const styles = StyleSheet.create({
+    tabBar: {
+        backgroundColor: '#e8eddf',
+        borderTopWidth: 1,
+        borderTopColor: '#e8eddf',
+    }
+})

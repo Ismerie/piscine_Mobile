@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function CurentlyScreen() {
+export default function CurentlyScreen({ screenText }) {
 	return (
 		<View style={styles.container}>
-			<Text>Curently Screen</Text>
+			<Text>Curently</Text>
+			<Text>{screenText}</Text>
 		</View>
 	);
 }

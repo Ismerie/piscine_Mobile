@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function WeeklyScreen() {
+export default function WeeklyScreen({ screenText }) {
 	return (
 		<View style={styles.container}>
-			<Text>Weekly Screen</Text>
+			<Text>Weekly</Text>
+			<Text>{screenText}</Text>
 		</View>
 	);
 }

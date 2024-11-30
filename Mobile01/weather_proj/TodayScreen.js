@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function TodayScreen() {
+export default function TodayScreen({ screenText }) {
 	return (
 		<View style={styles.container}>
-			<Text>Today Screen</Text>
+			<Text>Today</Text>
+			<Text>{screenText}</Text>
 		</View>
 	);
 }
