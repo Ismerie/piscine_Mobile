@@ -1,5 +1,7 @@
 import { View, Text, Platform, StyleSheet } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { NavigationContainer, useTheme } from '@react-navigation/native';
+import { PlatformPressable } from '@react-navigation/elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import CurrentlyScreen from './CurrentlyScreen';

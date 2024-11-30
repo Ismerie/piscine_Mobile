@@ -20,7 +20,7 @@ export default function App() {
         title="Click me"
         color = "#c8b6ff"
         onPress={handlePress}
-        accessibilityLabel="Learn more about this button"
+        accessibilityLabel="Boutton to change text"
       />
       <StatusBar style="auto" />
     </View>
