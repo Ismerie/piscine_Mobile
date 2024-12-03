@@ -9,7 +9,7 @@ export default function App() {
 
 	function handleClear() {
 		setExpression("");
-		setResult("0");
+		setResult(0);
 	}
 
 	function handleDelete() {
@@ -36,13 +36,13 @@ export default function App() {
 	return (
 		<View style={styles.container}>
 			<View style={[styles.appBar, {flex: 1}]}>
-				<Text style={{color: "#ebebeb", fontSize: "80%"}}>
+				<Text style={{color: "#ebebeb", fontSize: 25}}>
 				Calculator
 				</Text>
 			</View>
-			<View style={{flex: 3, justifyContent: 'space-between'}}>
+			<View style={{flex: 2, justifyContent: 'space-between'}}>
 				<ScrollView style={{flex:1}}>
-					<Text style={[styles.textField, {marginTop: 5, marginBottom: 100}] }>
+					<Text style={[styles.textField, {marginTop: 5}] }>
 					{expression}</Text>
 				</ScrollView>
 				<Text style={[styles.textField, {marginBottom: 5, backgroundColor: '#ffffff20'}] }>{result}</Text>
@@ -100,11 +100,11 @@ export default function App() {
 					</TouchableOpacity>
 				</View>
 				<View style={styles.buttonRow}>
-					<View style={{flex: '1', margin: 3}}></View>
+					<View style={{flex: 1, margin: 3}}></View>
 					<TouchableOpacity style={styles.button} onPress={() => handleButton('0')}>
 						<Text style={styles.buttonTextNumber}>0</Text>
 					</TouchableOpacity>
-					<View style={{flex: '1', margin: 3}}></View>
+					<View style={{flex: 1, margin: 3}}></View>
 					<TouchableOpacity style={styles.button} onPress={() => handleButton('.')}>
 						<Text style={styles.buttonTextSign}>.</Text>
 					</TouchableOpacity>
@@ -120,20 +120,20 @@ export default function App() {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 7,
+		flex: 1,
 		backgroundColor: '#3a6ea5',
 		fontSize: 50,
 	},
 	appBar: {
 		backgroundColor: "#004e98",
-		height: "10%",
+		height: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	textField: {
 		color: '#c0c0c0',
 		textAlign: 'right',
-		fontSize: "80%",
+		fontSize: 40,
 		padding: 10,
 		borderRadius: 5,
 		
@@ -143,12 +143,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		bottom: '0',
+		bottom: 0,
 	},
 	button: {
 		borderRadius: 30,
 		backgroundColor: '#004E98',
-		flex: '1',
+		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
 		margin: 3,
@@ -156,29 +156,29 @@ const styles = StyleSheet.create({
 	buttonEgal: {
 		borderRadius: 30,
 		backgroundColor: '#FF6700',
-		flex: '1',
+		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
 		margin: 3,
 	},
 	buttonTextNumber: {
-		fontSize: '80%',
-		padding: '5px',
+		fontSize: 30,
+		padding: 1,
 		color: '#ebebeb',
 	},
 	buttonTextSign: {
-		fontSize: '80%',
-		padding: '5px',
+		fontSize: 30,
+		padding: 1,
 		color: '#ff6700',
 	},
 	buttonTextSignEgal: {
-		fontSize: '80%',
-		padding: '5px',
+		fontSize: 30,
+		padding: 1,
 		color: '#ebebeb',
 	},
 	buttonTextLetter: {
-		fontSize: '80%',
-		padding: '5px',
+		fontSize: 30,
+		padding: 1,
 		color: '#c0c0c0',
 	},
 });

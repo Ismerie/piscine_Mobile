@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     backgroundColor: '#bbd0ff',
-    borderRadius: "5px"
+    borderRadius: 5
   }
 });
