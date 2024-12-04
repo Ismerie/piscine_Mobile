@@ -27,7 +27,7 @@ const getTabBarIcon = (routeName, focused, color, size) => {
     return <Icon name={iconName} size={size} color={color} />;
 }
 
-export default function BottomBar({ myLocation, error, location }) {
+export default function BottomBar({ error, location, currentWeather, todayWeather, weeklyWeather }) {
     return (
     <Tab.Navigator tabBarPosition='bottom'
     screenOptions={({ route }) => ({ 
@@ -40,19 +40,19 @@ export default function BottomBar({ myLocation, error, location }) {
         <Tab.Screen 
             name="Currently"
             children={() => (
-                <CurrentlyScreen myLocation={myLocation} error={error} location={location}/>
+                <CurrentlyScreen error={error} location={location} currentWeather={currentWeather} />
             )}
         />
         <Tab.Screen 
             name="Today"
             children={() => (
-                <TodayScreen myLocation={myLocation} error={error} location={location}/>
+                <TodayScreen error={error} location={location} todayWeather={todayWeather} />
             )}
         />
         <Tab.Screen 
             name="Weekly"
             children={() => (
-                <WeeklyScreen myLocation={myLocation} error={error} location={location}/>
+                <WeeklyScreen error={error} location={location} weeklyWeather={weeklyWeather} />
             )}
         />
     </Tab.Navigator>

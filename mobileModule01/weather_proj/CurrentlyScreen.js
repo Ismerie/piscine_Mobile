@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function CurentlyScreen({ screenText }) {
 	return (
 		<View style={styles.container}>
-			<Text>Curently</Text>
+			<Text>Currently</Text>
 			<Text>{screenText}</Text>
 		</View>
 	);

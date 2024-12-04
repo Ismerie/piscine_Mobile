@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, Keyboard} from 'react-native';
 import BottomBar from './BottomBar'
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
 	const [inputText, setInputText] = useState('');
@@ -35,6 +36,7 @@ export default function App() {
 			<NavigationContainer>
 				<BottomBar screenText={screenText} />
 			</NavigationContainer>
+			<StatusBar style="auto" />
 		</SafeAreaView>
 	);
 }
@@ -47,19 +49,27 @@ const styles = StyleSheet.create({
 	topBar: {
 		display: 'flex',
 		flexDirection: 'row',
-		width: '100%',
-		height: '10%',
 		alignItems: 'center',
 		backgroundColor: '#242423',
-		padding: 20,
+		paddingLeft: 10,
+		paddingEnd: 10,
+		paddingBottom: 25,
+		paddingTop: 50,
 	},
 	input: {
 		padding: 5,
 		backgroundColor: '#333533',
 		borderRadius: 5,
 		flex: 2,
-		marginLeft: '5px',
-		marginRight: '25px',
+		marginLeft: 5,
+		marginRight: 25,
 		color: '#e8eddf',
+	},
+	button: {
+		flex: 1,
+		width: 5,
+		justifyContent: 'center',
+		alignItems: 'center'
+
 	}
 });

@@ -2,18 +2,32 @@ import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, TextInput, Keyboard, FlatList, TouchableOpacity, Text, Dimensions } from 'react-native';
+import { getWeather } from './Utils/getWeather'
 
 const GeocodingAPI = "https://geocoding-api.open-meteo.com/v1/search?name="
 
-export default function SearchBar({setMyLocation, setError, setLocation}) {
+
+export default function SearchBar({setError, setLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather}) {
     const [inputText, setInputText] = useState('');
     const [suggestionsCities, setSuggestionsCities] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
 
     const handleSearchSubmit = () => {
-        setScreenText(inputText);
-		setError(false);
         Keyboard.dismiss();
+        if (suggestionsCities.length > 0) {
+            handleCitySelect(suggestionsCities[0]);
+            setError('');
+        }
+        else {
+            setError('No suggestions available. Please refine your search.');
+            setLocation({
+                city: '',
+                region: '',
+                country: '',
+                latitude: '',
+                longitude: ''
+            });
+        }
     };
 
     const getSuggestionsCities = async (searchCity) => {
@@ -26,7 +40,8 @@ export default function SearchBar({setMyLocation, setError, setLocation}) {
             const res = await axios.get(`${GeocodingAPI}${searchCity}`);
             if (res.data.results)
             setSuggestionsCities(res.data.results)
-            console.log(suggestionsCities);
+            if (res.data.results == undefined)
+                setSuggestionsCities([])
         }
         catch (error) {
             console.error("Error fetching city suggestions", error)
@@ -34,25 +49,26 @@ export default function SearchBar({setMyLocation, setError, setLocation}) {
     }
 
     const handleCitySelect = (city) => {
-        setMyLocation('');
+        Keyboard.dismiss();
         setSelectedCity(city);
         setInputText(city.name);
         setLocation({
             city: city.name,
             region: city.admin1,
-            country: city.country
+            country: city.country,
+            latitude: city.latitude,
+            longitude: city.longitude
         });
         setSuggestionsCities([]);
+        setError('');
+        
+        getWeather(city, setCurrentWeather, setTodayWeather, setWeeklyWeather);
     };
 
     useEffect(() => {
         const fetchSuggestions = async () => {
-            console.log('a');
             if (inputText && selectedCity == '') {
                 await getSuggestionsCities(inputText);
-                if (suggestionsCities) {
-                    console.log(suggestionsCities);
-                }
             } else {
                 setSuggestionsCities([]);
             }
@@ -69,13 +85,17 @@ export default function SearchBar({setMyLocation, setError, setLocation}) {
                 onSubmitEditing={handleSearchSubmit}
                 placeholder="Search location..."
                 placeholderTextColor="#888"
-                onFocus={() => setSelectedCity('')}
+                onFocus={() => {
+                    setSelectedCity('');
+                    setInputText('');
+                }}
             />
             {suggestionsCities.length > 0 && (
                 <View style={styles.suggestionContainer}>
                     <FlatList
                         data={suggestionsCities}
                         keyExtractor={(item) => item.id.toString()}
+                        keyboardShouldPersistTaps="handled"
                         renderItem={({ item }) => (
                             <TouchableOpacity style={styles.suggestionItem} onPress={() => handleCitySelect(item)}>
                                 <Text style={styles.suggestionText}>
@@ -95,8 +115,7 @@ export default function SearchBar({setMyLocation, setError, setLocation}) {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        flex: 1,
-        padding: 20,
+        flex: 2,
     },
     button: {
         marginLeft: 10,
@@ -116,7 +135,7 @@ const styles = StyleSheet.create({
         zIndex: 5,
         borderTopWidth: 1,
         borderColor: '#ccc',
-        width: "98%",
+        width: 300,
     },
     suggestionText: {
         fontSize: 16,

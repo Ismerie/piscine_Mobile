@@ -1,19 +1,40 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList} from 'react-native';
 
-export default function TodayScreen({ myLocation, error, location }) {
-	console.log(typeof myLocation, myLocation);
+export default function TodayScreen({ error, location, todayWeather }) {
+	const renderWeatherItem = ({ item }) => (
+        <View style={styles.weatherItem}>
+            <Text style={styles.weatherText}>{item.hour}</Text>
+            <Text style={styles.weatherText}>{item.temperature}°C</Text>
+            <Text style={styles.weatherText}>{item.windspeed} km/h</Text>
+            <Text style={styles.weatherText}>{item.weatherDescription}</Text>
+        </View>
+    );
+
 	return (
 		<View style={styles.container}>
 			{location.city != '' && (
-				<View>
-					<Text>{location.city}</Text>
-					<Text>{location.region}</Text>
-					<Text>{location.country}</Text>
+				<View style={{marginTop: 5}}>
+					<Text style={styles.locateText} >{location.city}</Text>
+					<Text style={styles.locateText}>{location.region}</Text>
+					<Text style={styles.locateText}>{location.country}</Text>
 				</View>
 			)}
-			{myLocation!= '' && typeof myLocation === 'string' && (
+			{!location.city && location.latitude != ''  && (
+				<View style={{marginTop: 5}}>
+					<Text style={styles.locateText}>{location.latitude}</Text>
+					<Text style={styles.locateText}>{location.longitude}</Text>
+				</View>
+			)}
+			{todayWeather.length > 1 && (
+                <FlatList
+                    data={todayWeather}
+                    renderItem={renderWeatherItem}
+                    keyExtractor={(item, index) => index.toString()}
+                />
+            )}
+			{error != '' && (
 				<View>
-					<Text>{myLocation}</Text>
+					<Text style={styles.errorText} >{error}</Text>
 				</View>
 			)}
 		</View>
@@ -24,15 +45,30 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
-		alignItems: 'center',
 	},
-	screenText: {
+	locateText: {
         fontSize: 16,
         color: 'black',
-        marginTop: 20,
         textAlign: 'center',
     },
     errorText: {
         color: 'red',
+    },
+	weatherItem: {
+        marginBottom: 15,
+        padding: 10,
+        backgroundColor: '#f5cb5c',
+        borderRadius: 5,
+        width: '100%',
+		display: 'flex',
+		flexDirection: "row",
+		alignItems: 'center',
+		justifyContent: 'center'
+    },
+    weatherText: {
+        fontSize: 14,
+        color: 'black',
+		flex: 1,
+		textAlign: 'center'
     },
 });

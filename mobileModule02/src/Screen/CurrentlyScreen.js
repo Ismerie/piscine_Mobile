@@ -1,18 +1,31 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function CurentlyScreen({ myLocation, error, location }) {
+export default function CurentlyScreen({error, location, currentWeather }) {
+	console.log(location)
 	return (
 		<View style={styles.container}>
 			{location.city != '' && (
 				<View>
-					<Text>{location.city}</Text>
-					<Text>{location.region}</Text>
-					<Text>{location.country}</Text>
+					<Text style={styles.locateText}>{location.city}</Text>
+					<Text style={styles.locateText}>{location.region}</Text>
+					<Text style={styles.locateText}>{location.country}</Text>
 				</View>
 			)}
-			{myLocation != '' && typeof myLocation === 'string' && (
+			{!location.city && location.latitude != ''  && (
+				<View style={{marginTop: 5}}>
+					<Text style={styles.locateText}>{location.latitude}</Text>
+					<Text style={styles.locateText}>{location.longitude}</Text>
+				</View>
+			)}
+			{currentWeather.temp != '' && (
+				<View style={{marginTop: 5}}>
+					<Text>{currentWeather.temp }°C</Text>
+					<Text>{currentWeather.windSpeed } km/h</Text>
+				</View>
+			)}
+			{error != '' && (
 				<View>
-					<Text>{myLocation}</Text>
+					<Text style={styles.errorText} >{error}</Text>
 				</View>
 			)}
 		</View>
@@ -25,10 +38,9 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		alignItems: 'center',
 	},
-	screenText: {
+	locateText: {
 		fontSize: 16,
 		color: 'black',
-		marginTop: 20,
 		textAlign: 'center',
 	},
 	errorText: {
