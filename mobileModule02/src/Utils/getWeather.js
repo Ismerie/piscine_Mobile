@@ -29,11 +29,8 @@ const fillTodayWeather = (setTodayWeather, data) => {
         weatherDescription: getWeatherDescription(todayWeatherCode[index]),
         windspeed: todayWindspeed[index]
     }));
-
     
-    console.log(dailyWeather);
     setTodayWeather(dailyWeather);
-    console.log("heeeee")
 
 } 
 
@@ -48,7 +45,6 @@ const fillWeeklyWeather = (setWeeklyWeather, data) => {
         weatherDescription: getWeatherDescription(weathercode[index])
     }));
 
-    console.log(weeklyWeather);
     setWeeklyWeather(weeklyWeather);
 }
 
@@ -64,14 +60,12 @@ export async function getWeather(city, setCurrentWeather, setTodayWeather, setWe
             }
         });
 
-        console.log(res.data)
-        console.log(city.latitude)
-        console.log(city.longitude)
         fillCurrentWeather(setCurrentWeather, res.data.current_weather);
         fillTodayWeather(setTodayWeather, res.data)
         fillWeeklyWeather(setWeeklyWeather, res.data);
     }
     catch (error) {
-        console.log("pas de meteo")
+        console.log(error);
+        setError("The service conection is lost, please check your internet connection or try again later")
     }
 } 

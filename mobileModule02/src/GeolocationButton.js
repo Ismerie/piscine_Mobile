@@ -4,7 +4,7 @@ import * as Location from 'expo-location';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { getWeather } from './Utils/getWeather'
 
-export default function GeolocationButton({setError, setLocation, location, setCurrentWeather, setTodayWeather, setWeeklyWeather}) {
+export default function GeolocationButton({setError, setLocation, pos, setCurrentWeather, setTodayWeather, setWeeklyWeather}) {
     const emptyLocationAndError = () => {
         setError('');
     }
@@ -36,14 +36,21 @@ export default function GeolocationButton({setError, setLocation, location, setC
             });
 
             const { latitude, longitude } = locationRes.coords;
-            console.log(locationRes.coords);
-            await setLocation({
-                latitude: latitude,
-                longitude: longitude
-            })
-            console.log(location)
-            getWeather(location, setCurrentWeather, setTodayWeather, setWeeklyWeather);
+
+            const newLocation = {
+                city: '',
+            region: '',
+            country: '',
+            latitude: latitude,
+            longitude: longitude,
+            };
+
+            setLocation(newLocation);
+
+            
+            getWeather(newLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather);
         } catch (error) {
+            console.log(error)
             setError("Could not fetch your location. Please try again.");
         }
     };

@@ -12,30 +12,33 @@ export default function TodayScreen({ error, location, todayWeather }) {
 
 	return (
 		<View style={styles.container}>
-			{location.city != '' && (
-				<View style={{marginTop: 5}}>
-					<Text style={styles.locateText} >{location.city}</Text>
-					<Text style={styles.locateText}>{location.region}</Text>
-					<Text style={styles.locateText}>{location.country}</Text>
-				</View>
-			)}
-			{!location.city && location.latitude != ''  && (
-				<View style={{marginTop: 5}}>
-					<Text style={styles.locateText}>{location.latitude}</Text>
-					<Text style={styles.locateText}>{location.longitude}</Text>
-				</View>
-			)}
-			{todayWeather.length > 1 && (
-                <FlatList
-                    data={todayWeather}
-                    renderItem={renderWeatherItem}
-                    keyExtractor={(item, index) => index.toString()}
-                />
-            )}
-			{error != '' && (
+			{error != '' ? (
 				<View>
 					<Text style={styles.errorText} >{error}</Text>
 				</View>
+			):(
+				<>
+					{location.city != '' && (
+						<View style={{marginTop: 5}}>
+							<Text style={styles.locateText} >{location.city}</Text>
+							<Text style={styles.locateText}>{location.region}</Text>
+							<Text style={styles.locateText}>{location.country}</Text>
+						</View>
+					)}
+					{!location.city && location.latitude != ''  && (
+						<View style={{marginTop: 5}}>
+							<Text style={styles.locateText}>{location.latitude}</Text>
+							<Text style={styles.locateText}>{location.longitude}</Text>
+						</View>
+					)}
+					{todayWeather.length > 1 && (
+						<FlatList
+							data={todayWeather}
+							renderItem={renderWeatherItem}
+							keyExtractor={(item, index) => index.toString()}
+						/>
+					)}
+				</>
 			)}
 		</View>
 	);
@@ -45,6 +48,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
+		paddingEnd: 5,
+		paddingLeft: 5,
 	},
 	locateText: {
         fontSize: 16,
@@ -53,6 +58,7 @@ const styles = StyleSheet.create({
     },
     errorText: {
         color: 'red',
+		textAlign: 'center',
     },
 	weatherItem: {
         marginBottom: 15,

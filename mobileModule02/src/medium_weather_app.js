@@ -36,9 +36,6 @@ export default function App() {
         weatherDescription: ''
     }])
 
-    console.log("current ", currentWeather);
-    console.log("today ", todayWeather);
-    console.log("weekly ", weeklyWeather);
 
     useEffect(() => {
         if (Platform.OS != 'web') {
@@ -63,7 +60,7 @@ export default function App() {
                 <GeolocationButton 
                     setError={setError} 
                     setLocation={setLocation} 
-                    location={location}
+                    pos={location}
                     setCurrentWeather={setCurrentWeather}
                     setTodayWeather={setTodayWeather}
                     setWeeklyWeather={setWeeklyWeather}

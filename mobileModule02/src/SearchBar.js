@@ -44,7 +44,8 @@ export default function SearchBar({setError, setLocation, setCurrentWeather, set
                 setSuggestionsCities([])
         }
         catch (error) {
-            console.error("Error fetching city suggestions", error)
+            console.log(error)
+            setError("The service conection is lost, please check your internet connection or try again later")
         }
     }
 
