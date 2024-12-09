@@ -4,11 +4,7 @@ import * as Location from 'expo-location';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { getWeather } from './Utils/getWeather'
 
-export default function GeolocationButton({setError, setLocation, pos, setCurrentWeather, setTodayWeather, setWeeklyWeather}) {
-    const emptyLocationAndError = () => {
-        setError('');
-    }
-
+export default function GeolocationButton({setError, setLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather}) {
     const requestLocationPermission = async () => {
         const { status } = await Location.requestForegroundPermissionsAsync();
 
@@ -23,7 +19,6 @@ export default function GeolocationButton({setError, setLocation, pos, setCurren
     };
 
     const getLocation = async () => {
-        emptyLocationAndError();
 
         const hasPermission = await requestLocationPermission();
         if (!hasPermission) {
@@ -48,9 +43,10 @@ export default function GeolocationButton({setError, setLocation, pos, setCurren
             setLocation(newLocation);
 
             
-            getWeather(newLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather, setError);
+            getWeather(newLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather, setError, setLocation);
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            resetSate(setLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather);
             setError("Could not fetch your location. Please try again.");
         }
     };
@@ -72,7 +68,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-        backgroundColor: '#333',
         borderRadius: 50,
     },
 });

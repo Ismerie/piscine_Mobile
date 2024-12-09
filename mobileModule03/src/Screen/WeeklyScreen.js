@@ -12,7 +12,7 @@ export default function WeeklyScreen({error, location, weeklyWeather }) {
 
 	return (
 		<View style={styles.container}>
-		{error != '' ? (
+		{error.length > 0 ? (
 			<View>
 				<Text style={styles.errorText} >{error}</Text>
 			</View>

@@ -12,6 +12,14 @@ export default function SearchBar({setError, setLocation, setCurrentWeather, set
     const [suggestionsCities, setSuggestionsCities] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
 
+
+    const resetSate = (setLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather) => {
+        setLocation(null)
+        setCurrentWeather(null)
+        setTodayWeather(null)
+        setWeeklyWeather(null)
+    }
+
     const handleSearchSubmit = () => {
         Keyboard.dismiss();
         if (suggestionsCities.length > 0) {
@@ -45,6 +53,7 @@ export default function SearchBar({setError, setLocation, setCurrentWeather, set
         }
         catch (error) {
             console.log(error)
+            resetSate(setLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather);;
             setError("The service conection is lost, please check your internet connection or try again later")
         }
     }
@@ -63,7 +72,7 @@ export default function SearchBar({setError, setLocation, setCurrentWeather, set
         setSuggestionsCities([]);
         setError('');
         
-        getWeather(city, setCurrentWeather, setTodayWeather, setWeeklyWeather);
+        getWeather(city, setCurrentWeather, setTodayWeather, setWeeklyWeather, setError, setLocation);
     };
 
     useEffect(() => {

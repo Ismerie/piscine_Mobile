@@ -4,6 +4,13 @@ import axios from 'axios';
 import { getWeatherDescription } from './codeWeather';
 const WeatherAPI = "https://api.open-meteo.com/v1/forecast"
 
+const resetSate = (setLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather) => {
+    setLocation(null)
+    setCurrentWeather(null)
+    setTodayWeather(null)
+    setWeeklyWeather(null)
+}
+
 const fillCurrentWeather = (setCurrentWeather, current_weather) => {
     const { temperature, weathercode, windspeed } = current_weather;
     const weatherDescription = getWeatherDescription(weathercode);
@@ -48,7 +55,7 @@ const fillWeeklyWeather = (setWeeklyWeather, data) => {
     setWeeklyWeather(weeklyWeather);
 }
 
-export async function getWeather(city, setCurrentWeather, setTodayWeather, setWeeklyWeather, setError) {
+export async function getWeather(city, setCurrentWeather, setTodayWeather, setWeeklyWeather, setError, setLocation) {
     try {
         const res = await axios.get(WeatherAPI, {
             params: {
@@ -66,6 +73,7 @@ export async function getWeather(city, setCurrentWeather, setTodayWeather, setWe
     }
     catch (error) {
         console.log(error);
+        resetSate(setLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather);
         setError("The service conection is lost, please check your internet connection or try again later")
     }
 } 

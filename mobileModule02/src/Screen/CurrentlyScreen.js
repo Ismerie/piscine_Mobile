@@ -27,6 +27,7 @@ export default function CurentlyScreen({error, location, currentWeather }) {
 						<View style={{marginTop: 5}}>
 							<Text>{currentWeather.temp }°C</Text>
 							<Text>{currentWeather.windSpeed } km/h</Text>
+							<Text>{currentWeather.weatherDescription }</Text>
 						</View>
 					)}
 				</>

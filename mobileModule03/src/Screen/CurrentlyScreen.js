@@ -4,7 +4,7 @@ import WindIcon from "../../assets/WeatherIcons/windIcon.svg"
 export default function CurentlyScreen({error, location, currentWeather }) {
 	return (
 		<View style={styles.container}>
-			{error != '' ?(
+			{error.length > 0 ? (
 				<View>
 					<Text style={styles.errorText} >{error}</Text>
 				</View>

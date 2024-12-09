@@ -23,7 +23,7 @@ export default function TodayScreen({ error, location, todayWeather }) {
 	const dataPoints = todayWeather.map((data) => data.temperature);
 	return (
 		<View style={styles.container}>
-			{error != '' ? (
+			{error.length > 0 ? (
 				<View>
 					<Text style={styles.errorText} >{error}</Text>
 				</View>
