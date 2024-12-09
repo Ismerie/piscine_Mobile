@@ -1,16 +1,18 @@
 import React from 'react';
 import axios from 'axios';
 
-import { getWeatherDescription } from './codeWeather';
+import { getWeatherDescription, getWeatherImage } from './codeWeather';
 const WeatherAPI = "https://api.open-meteo.com/v1/forecast"
 
 const fillCurrentWeather = (setCurrentWeather, current_weather) => {
     const { temperature, weathercode, windspeed } = current_weather;
     const weatherDescription = getWeatherDescription(weathercode);
+    const weatherImage = getWeatherImage(weathercode)
     setCurrentWeather({
             temp: temperature,
             weatherDescription: weatherDescription,
             windSpeed: windspeed,
+            weatherImage: weatherImage
     })
 }
 
@@ -22,12 +24,12 @@ const fillTodayWeather = (setTodayWeather, data) => {
     const todayTemperature = temperature_2m.slice(0, 24);
     const todayWeatherCode = weathercode.slice(0, 24);
     const todayWindspeed = windspeed_10m.slice(0, 24);
-
     const dailyWeather = todayTime.map((hour, index) => ({
         hour: todayTime[index].split('T')[1],
         temperature: todayTemperature[index],
         weatherDescription: getWeatherDescription(todayWeatherCode[index]),
-        windspeed: todayWindspeed[index]
+        windspeed: todayWindspeed[index],
+        weatherImage: getWeatherImage(todayWeatherCode[index])
     }));
     
     setTodayWeather(dailyWeather);
