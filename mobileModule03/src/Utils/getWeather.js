@@ -40,7 +40,6 @@ const fillWeeklyWeather = (setWeeklyWeather, data) => {
     const { daily } = data;
     const { time, temperature_2m_min, temperature_2m_max, weathercode } = daily;
 
-    console.log(time)
     const weeklyWeather = time.map((date, index) => ({
         date: date.split('-').reverse().slice(0, 2).join('/'),
         minTemp: temperature_2m_min[index],

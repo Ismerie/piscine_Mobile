@@ -4,7 +4,7 @@ import * as Location from 'expo-location';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { getWeather } from './Utils/getWeather'
 
-export default function GeolocationButton({setError, setLocation, pos, setCurrentWeather, setTodayWeather, setWeeklyWeather}) {
+export default function GeolocationButton({setError, setLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather}) {
     const requestLocationPermission = async () => {
         const { status } = await Location.requestForegroundPermissionsAsync();
 
@@ -43,6 +43,7 @@ export default function GeolocationButton({setError, setLocation, pos, setCurren
 
             
             getWeather(newLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather, setError);
+            setError('')
         } catch (error) {
             console.log(error)
             setError("Could not fetch your location. Please try again.");

@@ -21,25 +21,25 @@ export default function WeeklyScreen({error, location, weeklyWeather }) {
 	const dataPointsMax = weeklyWeather.map((data) => data.maxTemp);
 	return (
 		<ScrollView style={styles.container}>
-		{error.length > 0 ? (
+		{error && error.length > 0 ? (
 			<View>
 				<Text style={styles.errorText} >{error}</Text>
 			</View>
 		):(
 			<>
-				{location.city != '' && (
+				{location?.city != '' && (
 					<View style={{marginTop: 10, padding: 30}}>
 						<Text style={styles.cityText} >{location.city}</Text>
 						<Text style={styles.locateText} >{location.region}</Text>
 						<Text style={styles.locateText} >{location.country}</Text>
 					</View>
 				)}
-				{!location.city && location.latitude != ''  && (
+				{!location?.city && location.latitude != ''  && (
 					<View style={{marginTop: 10, padding: 30}}>
 					<Text style={styles.cityText}>At home</Text>
 					</View>
 				)}
-				{weeklyWeather.length > 1 && (
+				{weeklyWeather?.length > 1 && (
 						<>
 							<LineChart
 								data={{

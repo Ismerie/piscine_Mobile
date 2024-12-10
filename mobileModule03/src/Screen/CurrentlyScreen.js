@@ -4,25 +4,25 @@ import WindIcon from "../../assets/WeatherIcons/windIcon.svg"
 export default function CurentlyScreen({error, location, currentWeather }) {
 	return (
 		<ScrollView style={styles.container}>
-			{error.length > 0 ? (
+			{error && error.length > 0 ? (
 				<View>
 					<Text style={styles.errorText} >{error}</Text>
 				</View>
 			):(
 				<>
-					{location.city != '' && (
+					{location?.city != '' && (
 						<View style={{marginTop: 10}}>
 							<Text style={styles.cityText}>{location.city}</Text>
 							<Text style={styles.locateText}>{location.region ? `${location.region}, ` : ''}
 							{location.country}</Text>
 						</View>
 					)}
-					{!location.city && location.latitude != ''  && (
+					{!location?.city && location.latitude != ''  && (
 						<View style={{marginTop: 10}}>
 						<Text style={styles.cityText}>At home</Text>
 						</View>
 					)}
-					{currentWeather.temp != '' && (
+					{currentWeather?.temp != '' && (
 						<View style={{marginTop: 30}}>
 							<View style={[styles.dataWeather, { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
 								<View style={{ flexDirection: 'row', alignItems: 'flex-start'}}>

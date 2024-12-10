@@ -67,8 +67,7 @@ export default function App() {
                         />
                     <GeolocationButton 
                         setError={setError} 
-                        setLocation={setLocation} 
-                        pos={location}
+                        setLocation={setLocation}
                         setCurrentWeather={setCurrentWeather}
                         setTodayWeather={setTodayWeather}
                         setWeeklyWeather={setWeeklyWeather}

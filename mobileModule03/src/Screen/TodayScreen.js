@@ -23,25 +23,25 @@ export default function TodayScreen({ error, location, todayWeather }) {
 	const dataPoints = todayWeather.map((data) => data.temperature);
 	return (
 		<ScrollView style={styles.container}>
-			{error.length > 0 ? (
+			{error && error.length > 0 ? (
 				<View>
 					<Text style={styles.errorText} >{error}</Text>
 				</View>
 			):(
 				<>
-					{location.city != '' && (
+					{location?.city != '' && (
 						<View style={{marginTop: 10, padding: 30}}>
 							<Text style={styles.cityText} >{location.city}</Text>
 							<Text style={styles.locateText}>{location.region ? `${location.region}, ` : ''}
 							{location.country}</Text>
 						</View>
 					)}
-					{!location.city && location.latitude != ''  && (
+					{!location?.city && location.latitude != ''  && (
 						<View style={{marginTop: 10, padding: 30}}>
 							<Text style={styles.cityText}>At home</Text>
 						</View>
 					)}
-					{todayWeather.length > 1 && (
+					{todayWeather?.length > 1 && (
 						<>
 							<LineChart
 								data={{
@@ -89,7 +89,7 @@ export default function TodayScreen({ error, location, todayWeather }) {
 								renderItem={renderWeatherItem}
 								keyExtractor={(item, index) => index.toString()}
 								showsHorizontalScrollIndicator={true}
-								style={{padding:5, marginTop: 20}}
+								style={{padding:5, marginTop: 20, alignSelf: 'center'}}
 							/>
 						</>
 					)}
