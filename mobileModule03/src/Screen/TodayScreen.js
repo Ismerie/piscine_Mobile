@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, ScrollView} from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import WindIcon from "../../assets/WeatherIcons/windIcon.svg"
 
@@ -22,7 +22,7 @@ export default function TodayScreen({ error, location, todayWeather }) {
 	);
 	const dataPoints = todayWeather.map((data) => data.temperature);
 	return (
-		<View style={styles.container}>
+		<ScrollView style={styles.container}>
 			{error.length > 0 ? (
 				<View>
 					<Text style={styles.errorText} >{error}</Text>
@@ -38,8 +38,7 @@ export default function TodayScreen({ error, location, todayWeather }) {
 					)}
 					{!location.city && location.latitude != ''  && (
 						<View style={{marginTop: 10, padding: 30}}>
-							<Text style={styles.cityText}>{location.latitude}</Text>
-							<Text style={styles.cityText}>{location.longitude}</Text>
+							<Text style={styles.cityText}>At home</Text>
 						</View>
 					)}
 					{todayWeather.length > 1 && (
@@ -53,8 +52,8 @@ export default function TodayScreen({ error, location, todayWeather }) {
 									},
 									],
 								}}
-								width={380} // Largeur du graphique
-								height={200} // Hauteur du graphique
+								width={380}
+								height={200}
 								yAxisSuffix="°C"
 								chartConfig={{
 								backgroundColor: "#e26a00",
@@ -68,6 +67,9 @@ export default function TodayScreen({ error, location, todayWeather }) {
 								style: {
 									borderRadius: 8,
 								},
+								propsForBackgroundLines: {
+									strokeWidth: 0,
+								},
 								propsForDots: {
 									r: '2',
 									strokeWidth: '2',
@@ -76,9 +78,9 @@ export default function TodayScreen({ error, location, todayWeather }) {
 								},
 								}}
 								style={{
-									marginVertical: 30,
+									marginVertical: 15,
 									borderRadius: 8,
-									alignSelf: 'center'
+									alignSelf: 'center',
 								}}
 							/>
 							<FlatList
@@ -87,13 +89,13 @@ export default function TodayScreen({ error, location, todayWeather }) {
 								renderItem={renderWeatherItem}
 								keyExtractor={(item, index) => index.toString()}
 								showsHorizontalScrollIndicator={true}
-								style={{padding:5}}
+								style={{padding:5, marginTop: 20}}
 							/>
 						</>
 					)}
 				</>
 			)}
-		</View>
+		</ScrollView>
 	);
 }
 

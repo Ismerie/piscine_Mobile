@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import WindIcon from "../../assets/WeatherIcons/windIcon.svg"
 
 export default function CurentlyScreen({error, location, currentWeather }) {
 	return (
-		<View style={styles.container}>
+		<ScrollView style={styles.container}>
 			{error.length > 0 ? (
 				<View>
 					<Text style={styles.errorText} >{error}</Text>
@@ -19,8 +19,7 @@ export default function CurentlyScreen({error, location, currentWeather }) {
 					)}
 					{!location.city && location.latitude != ''  && (
 						<View style={{marginTop: 10}}>
-							<Text style={styles.cityText}>{location.latitude}</Text>
-							<Text style={styles.cityText}>{location.longitude}</Text>
+						<Text style={styles.cityText}>At home</Text>
 						</View>
 					)}
 					{currentWeather.temp != '' && (
@@ -38,13 +37,13 @@ export default function CurentlyScreen({error, location, currentWeather }) {
 							</View>
 							<View style={styles.descriptionContainer}>
 								<Image source={currentWeather.weatherImage} style={{ width:200, height: 200}} ></Image>
-								<Text style={{ fontSize: 30, color: 'white', marginLeft: 2, marginTop: 5}} >{currentWeather.weatherDescription}</Text>
+								<Text style={{ fontSize: 30, color: 'white', marginLeft: 2, marginTop: 5, marginBottom: 30}} >{currentWeather.weatherDescription}</Text>
 							</View>
 						</View>
 					)}
 				</>
 			)}
-		</View>
+		</ScrollView>
 	);
 }
 

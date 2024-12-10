@@ -35,7 +35,8 @@ export default function App() {
         date: '',
         minTemp: '',
         maxTemp: '',
-        weatherDescription: ''
+        weatherDescription: '',
+        weatherImage: ''
     }])
 
 

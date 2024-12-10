@@ -5,10 +5,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { getWeather } from './Utils/getWeather'
 
 export default function GeolocationButton({setError, setLocation, pos, setCurrentWeather, setTodayWeather, setWeeklyWeather}) {
-    const emptyLocationAndError = () => {
-        setError('');
-    }
-
     const requestLocationPermission = async () => {
         const { status } = await Location.requestForegroundPermissionsAsync();
 
@@ -23,8 +19,6 @@ export default function GeolocationButton({setError, setLocation, pos, setCurren
     };
 
     const getLocation = async () => {
-        emptyLocationAndError();
-
         const hasPermission = await requestLocationPermission();
         if (!hasPermission) {
             setError('Geolocation is not available, please enable it in your App settings');

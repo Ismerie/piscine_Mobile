@@ -12,26 +12,26 @@ export default function TodayScreen({ error, location, todayWeather }) {
 
 	return (
 		<View style={styles.container}>
-			{error != '' ? (
+			{error && error != '' ? (
 				<View>
 					<Text style={styles.errorText} >{error}</Text>
 				</View>
 			):(
 				<>
-					{location.city != '' && (
+					{location?.city != '' && (
 						<View style={{marginTop: 5}}>
 							<Text style={styles.locateText} >{location.city}</Text>
 							<Text style={styles.locateText}>{location.region}</Text>
 							<Text style={styles.locateText}>{location.country}</Text>
 						</View>
 					)}
-					{!location.city && location.latitude != ''  && (
+					{!location?.city && location?.latitude != ''  && (
 						<View style={{marginTop: 5}}>
 							<Text style={styles.locateText}>{location.latitude}</Text>
 							<Text style={styles.locateText}>{location.longitude}</Text>
 						</View>
 					)}
-					{todayWeather.length > 1 && (
+					{todayWeather?.length > 1 && (
 						<FlatList
 							data={todayWeather}
 							renderItem={renderWeatherItem}

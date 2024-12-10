@@ -19,7 +19,6 @@ export default function GeolocationButton({setError, setLocation, setCurrentWeat
     };
 
     const getLocation = async () => {
-
         const hasPermission = await requestLocationPermission();
         if (!hasPermission) {
             setError('Geolocation is not available, please enable it in your App settings');
@@ -44,9 +43,9 @@ export default function GeolocationButton({setError, setLocation, setCurrentWeat
 
             
             getWeather(newLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather, setError, setLocation);
+            setError('');
         } catch (error) {
             console.log(error);
-            resetSate(setLocation, setCurrentWeather, setTodayWeather, setWeeklyWeather);
             setError("Could not fetch your location. Please try again.");
         }
     };
