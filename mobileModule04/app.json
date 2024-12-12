@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "mobileModule04",
+    "slug": "mobileModule04",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
+    "android": {
+      "package": "com.igeorge2.mobileModule04",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "912f063d-7fee-410c-b73a-22aa2f29b118"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.igeorge2.mobileModule04"
+    }
+  }
+}
