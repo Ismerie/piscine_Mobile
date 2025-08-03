@@ -13,3 +13,18 @@ J'ai choisi comme framework React Native.
 |   03   | Design                    | Style, BackgroundImage et graphiques de données                                             | App météo          |
 |   04   | Auth and dataBase         | Utiliser un système d'authentification (Firebase), connection avec Google et base de donnée | App journal intime |
 |   05   | Manage data and display   | Données utilisateurs, intégration calendrier                                                | App journal intime |
+
+### App journal intime
+![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_welcome.jpg)
+![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_Dashboard.jpg)
+![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_calendar.jpg)
+![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_newNote.jpg)
+![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_note.jpg)
+
+### App météo
+![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/weatherApp_today.jpg)
+![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/weatherApp_weekly.jpg)
+![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/weatherApp_currently.jpg)
+
+### Calculatrice
+![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/calculatorApp.jpg)
