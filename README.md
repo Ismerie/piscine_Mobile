@@ -15,16 +15,22 @@ J'ai choisi comme framework React Native.
 |   05   | Manage data and display   | Données utilisateurs, intégration calendrier                                                | App journal intime |
 
 ### App journal intime
-![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_welcome.jpg)
-![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_Dashboard.jpg)
-![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_calendar.jpg)
-![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_newNote.jpg)
-![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_note.jpg)
+<div style="display: flex; justify-content: center; gap: 10px;">
+  <img src="https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_welcome.jpg" alt="Preview acceuil" width="300"/>
+  <img src="https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_Dashboard.jpg" alt="Preview tableau de bord" width="300"/>
+  <img src="https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_calendar.jpg" alt="Preview calendrier" width="300"/>
+  <img src="https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_newNote.jpg" alt="Preview nouvelle note" width="300"/>
+  <img src="https://github.com/Ismerie/piscine_Mobile/blob/main/preview/diaryApp_note.jpg" alt="Preview note" width="300"/>
+</div>  
 
 ### App météo
-![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/weatherApp_today.jpg)
-![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/weatherApp_weekly.jpg)
-![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/weatherApp_currently.jpg)
+<div style="display: flex; justify-content: center; gap: 10px;">
+  <img src="https://github.com/Ismerie/piscine_Mobile/blob/main/preview/weatherApp_today.jpg" alt="Preview onglet aujourd'hui" width="300"/>
+  <img src="https://github.com/Ismerie/piscine_Mobile/blob/main/preview/weatherApp_weekly.jpg" alt="Preview onglet semaine" width="300"/>
+  <img src="https://github.com/Ismerie/piscine_Mobile/blob/main/preview/weatherApp_currently.jpg" alt="Preview onglet souvent" width="300"/>
+</div>  
 
 ### Calculatrice
-![alt-text](https://github.com/Ismerie/piscine_Mobile/blob/main/preview/calculatorApp.jpg)
+<div style="display: flex; justify-content: center; gap: 10px;">
+  <img src="https://github.com/Ismerie/piscine_Mobile/blob/main/preview/calculatorApp.jpg" alt="Preview calculatrice" width="300"/>
+</div>  
